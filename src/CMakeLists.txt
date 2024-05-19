@@ -5,7 +5,9 @@
 # Add source to this project's executable.
 add_executable (CruZPlus "CruZPlus.GameEngine.cpp" "CruZPlus.GameEngine.h")
 
-target_link_libraries(CruZPlus SFML::Window)
+target_link_libraries(CruZPlus SFML::Window SFML::Graphics)
+
+file(COPY "cute_cat.jpg" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET CruZPlus PROPERTY CXX_STANDARD 20)

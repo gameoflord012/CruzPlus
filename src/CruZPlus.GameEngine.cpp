@@ -1,8 +1,9 @@
 ﻿#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
 
 int main()
 {
-    sf::Window window(sf::VideoMode(sf::Vector2u(800, 600)), "My window");
+    sf::RenderWindow window(sf::VideoMode(sf::Vector2u(800, 600)), "My window");
 
     // run the program as long as the window is open
     while (window.isOpen())
@@ -17,6 +18,17 @@ int main()
                 window.close();
             }
         }
+
+        sf::Texture texture;
+        if (!texture.loadFromFile("cute_cat.jpg"))
+            return EXIT_FAILURE;
+        sf::Sprite sprite(texture);
+
+        window.clear(sf::Color::Black);
+
+        window.draw(sprite);
+
+        window.display();
     }
 
     return 0;
