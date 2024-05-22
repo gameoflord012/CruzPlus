@@ -1,16 +1,8 @@
-﻿# CMakeList.txt : CMake project for CruZPlus.GameEngine, include source and define
-# project specific logic here.
-#
+﻿set(RESOURCE_OUT_DIR ${CMAKE_CURRENT_BINARY_DIR}/CruZPlus)
 
-# Add source to this project's executable.
-add_executable (CruZPlus "CruZPlus.GameEngine.cpp" "CruZPlus.GameEngine.h")
+file(COPY ${RESOURCE_DIR}
+	DESTINATION ${RESOURCE_OUT_DIR})
 
-target_link_libraries(CruZPlus SFML::Window SFML::Graphics)
+include_directories(.)
 
-file(COPY "cute_cat.jpg" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
-
-if (CMAKE_VERSION VERSION_GREATER 3.12)
-  set_property(TARGET CruZPlus PROPERTY CXX_STANDARD 20)
-endif()
-
-# TODO: Add tests and install targets if needed.
+add_subdirectory(CruZPlus)

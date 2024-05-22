@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        ".fantomasignore": "ignore",
+        "array": "cpp"
+    },
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.revealIfOpen": true
+}
