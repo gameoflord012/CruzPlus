@@ -16,7 +16,7 @@ SpaceShip::SpaceShip(b2World *world) : m_world(world)
 
     // create sprite
     m_texture = new Texture();
-    if (!m_texture->loadFromFile("res\\cute_cat.jpg"))
+    if (!m_texture->loadFromFile("res\\main_ship.png"))
         throw "load texture error";
     m_sprite = new Sprite(*m_texture);
 }

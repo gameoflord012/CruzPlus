@@ -6,24 +6,25 @@
 #include <box2d/box2d.h>
 
 #include "GameEntity/SpaceShip.h"
+#include "Editor/Board.h"
+
+const int FPS = 60;
+const float UPDATE_INTERVAL = 1.0f / FPS;
+const clock_t CLOCK_PER_FRAME = (clock_t)(UPDATE_INTERVAL * CLOCKS_PER_SEC);
 
 int main()
 {
-    b2World world(b2Vec2(0, -10));
-
-    const int FPS = 60;
-    const float UPDATE_INTERVAL = 1.0f / FPS;
-    const clock_t CLOCK_PER_FRAME = (clock_t)(UPDATE_INTERVAL * CLOCKS_PER_SEC);
-
     std::clock_t gameClock = 0;
-
     sf::RenderWindow window(sf::VideoMode(sf::Vector2u(1000, 600)), "My window");
 
+    b2World world(b2Vec2(0, -10));
     SpaceShip spaceShip(&world);
+    Board board;
 
     // init window view
     sf::View view = window.getDefaultView();
     view.setCenter({0, 0});
+    view.zoom(0.25);
     window.setView(view);
     
     while (window.isOpen())
@@ -48,6 +49,7 @@ int main()
         window.clear(sf::Color::Blue);
         {
             spaceShip.render(window);
+            board.render(window);
         }
         window.display();
     }

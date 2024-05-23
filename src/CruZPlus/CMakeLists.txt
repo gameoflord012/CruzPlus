@@ -1,5 +1,6 @@
 ﻿add_executable(CruZPlus 
 	GameEntity/SpaceShip.cpp
+	Editor/Board.cpp
 	main.cpp
 )
 
