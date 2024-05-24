@@ -3,7 +3,10 @@
 #include <SFML/Graphics.hpp>
 #include <box2d/box2d.h>
 
-class SpaceShip
+#include "CruZPlus/IUpdate.h"
+#include "CruZPlus/IRender.h"
+
+class SpaceShip : public IUpdate, public IRender
 {
 public:
     SpaceShip(b2World * world);

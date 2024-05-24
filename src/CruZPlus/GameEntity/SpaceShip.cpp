@@ -14,10 +14,10 @@ SpaceShip::SpaceShip(b2World *world) : m_world(world)
     boxShape.SetAsBox(10, 10);
     m_body->CreateFixture(&boxShape, 0);
 
-    // create sprite
+    // create sprite 
     m_texture = new Texture();
-    if (!m_texture->loadFromFile("res\\main_ship.png"))
-        throw "load texture error";
+    assert(m_texture->loadFromFile("res\\main_ship.png"));
+
     m_sprite = new Sprite(*m_texture);
 }
 
