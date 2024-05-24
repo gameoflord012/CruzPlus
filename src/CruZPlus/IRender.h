@@ -1,9 +1,11 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-
-class IRender
+namespace CruZ
 {
-public:
-    virtual void render(sf::RenderWindow&) = 0;
-};
+    class IRender
+    {
+    public:
+        virtual void render(sf::RenderWindow &) = 0;
+    };
+}

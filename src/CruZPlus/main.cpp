@@ -14,10 +14,10 @@ int main()
 {
     try
     {
-        Game game;
+        CruZ::Game game;
 
-        Board board;
-        SpaceShip spaceShip(game.getWorld());
+        CruZ::Board board;
+        CruZ::SpaceShip spaceShip(game.getWorld());
 
         game.addUpdate(spaceShip);
         game.addRender(spaceShip);

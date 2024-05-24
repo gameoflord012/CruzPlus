@@ -2,10 +2,13 @@
 
 #include <SFML/Graphics.hpp>
 
-class Board
+namespace CruZ
 {
-public:
-    Board(/* args */);
-    void render(sf::RenderWindow& window);
-    ~Board();
-};
+    class Board
+    {
+    public:
+        Board(/* args */);
+        void render(sf::RenderWindow &window);
+        ~Board();
+    };
+}

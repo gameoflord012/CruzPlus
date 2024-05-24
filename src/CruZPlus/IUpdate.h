@@ -1,7 +1,10 @@
 #pragma once
 
-class IUpdate
+namespace CruZ
 {
-public:
-    virtual void update(float deltaTime) = 0;
-};
+    class IUpdate
+    {
+    public:
+        virtual void update(float deltaTime) = 0;
+    };
+}
