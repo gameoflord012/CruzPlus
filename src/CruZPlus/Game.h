@@ -1,7 +1,7 @@
 #pragma once
 
-#include "CruZPlus/IUpdate.h"
-#include "IRender.h"
+#include "GameEntity/IUpdate.h"
+#include "GameEntity/IRender.h"
 
 #include <box2d/box2d.h>
 #include <ctime>

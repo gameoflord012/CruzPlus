@@ -8,19 +8,36 @@
 
 #include <box2d/box2d.h>
 
+#include "Physic.h"
 #include "Game.h"
+#include "Instances.h"
+#include "GameEntity/Bullet.h"
+#include "Memory/BlockAllocator.h"
+
+using namespace CruZ;
 
 int main()
 {
     try
     {
-        CruZ::Game game;
+        Game game;
+        BlockAllocator allocator;
+        Physic physic(*game.getWorld());
 
-        CruZ::Board board;
-        CruZ::SpaceShip spaceShip(game.getWorld());
+        Instances::set(game);
+        Instances::set(physic);
+        Instances::set(allocator);
 
+        SpaceShip spaceShip;
         game.addUpdate(spaceShip);
         game.addRender(spaceShip);
+
+        sf::Texture bulletTex;
+        assert(bulletTex.loadFromFile("res/main_ship_bullet.png"));
+        Bullet bullet(allocator, bulletTex);
+        game.addUpdate(bullet);
+        game.addRender(bullet);
+
         game.run();
     }
     catch (const std::exception &e)

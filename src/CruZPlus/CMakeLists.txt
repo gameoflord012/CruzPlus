@@ -1,9 +1,9 @@
-﻿add_executable(CruZPlus 
-	GameEntity/SpaceShip.cpp
-	Editor/Board.cpp
-	Game.cpp
-	main.cpp
+﻿file(GLOB_RECURSE source_files
+	RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
+	${CMAKE_CURRENT_SOURCE_DIR}/*.cpp
 )
+
+add_executable(CruZPlus ${source_files})
 
 target_compile_options(CruZPlus PRIVATE -W3)
 

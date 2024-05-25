@@ -1,15 +1,18 @@
 #include "SpaceShip.h"
+#include "CruZPlus/Instances.h"
+#include "CruZPlus/Game.h"
 
 using namespace sf;
 
 namespace CruZ
 {
-    SpaceShip::SpaceShip(b2World *world) : m_world(world)
+    SpaceShip::SpaceShip()
     {
         // create body
         b2BodyDef bodyDef;
         bodyDef.type = b2_dynamicBody;
-        m_body = world->CreateBody(&bodyDef);
+        m_world = Instances::get<Game>()->getWorld();
+        m_body = m_world->CreateBody(&bodyDef);
 
         // create fixture
         b2PolygonShape boxShape;

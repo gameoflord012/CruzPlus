@@ -4,6 +4,8 @@
 #include <SFML/Graphics.hpp>
 #include <cassert>
 
+#include <CruZPlus/Settings.h>
+
 namespace CruZ
 {
     Game::Game()
@@ -23,7 +25,7 @@ namespace CruZ
         sf::RenderWindow window(sf::VideoMode(sf::Vector2u(1000, 600)), "My window");
         sf::View view = window.getDefaultView();
         view.setCenter({0, 0});
-        view.zoom(0.25);
+        view.zoom(ZOOM);
         window.setView(view);
 
         std::clock_t gameClock = 0;
