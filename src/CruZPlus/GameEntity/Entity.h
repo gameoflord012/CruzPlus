@@ -8,7 +8,7 @@
 namespace CruZ
 {
     class EntityWorld;
-
+    
     class Entity : public IUpdate, public IRender
     {
         friend class EntityWorld;
@@ -16,7 +16,8 @@ namespace CruZ
     public:
         virtual void update(float deltaTime);
         virtual void render(sf::RenderWindow &);
-        EntityWorld *getWorld();
+        EntityWorld *getEntityWorld();
+        ~Entity();
         
     private:
         EntityWorld *m_world;

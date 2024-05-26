@@ -15,6 +15,7 @@ namespace CruZ
         void updateAll(float);
         void renderAll(sf::RenderWindow &);
         void addEntity(Entity &);
+        void removeEntity(Entity &);
     private:
         std::vector<Entity*> m_entities;
     };

@@ -2,9 +2,11 @@
 
 #include <SFML/Graphics.hpp>
 #include <box2d/box2d.h>
+#include <vector>
 
 #include "CruZPlus/Memory/BlockAllocator.h"
 #include "Entity.h"
+#include "Bullet.h"
 
 namespace CruZ
 {
@@ -20,8 +22,11 @@ namespace CruZ
         BlockAllocator m_allocator;
 
         b2Body *m_body;
-        b2World *m_world;
+        b2World *m_b2world;
         sf::Sprite *m_sprite;
-        sf::Texture *m_texture;
+
+        bool m_lastSpace;
+
+        std::vector<Bullet *> m_bullets;
     };
 }

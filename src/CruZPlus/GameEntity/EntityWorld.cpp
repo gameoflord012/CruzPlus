@@ -31,4 +31,11 @@ namespace CruZ
 
         entity.m_world = this;
     }
+    
+    void EntityWorld::removeEntity(Entity &entity)
+    {
+        auto it = std::find(m_entities.begin(), m_entities.end(), &entity);
+        if (it != m_entities.end())
+            m_entities.erase(it);
+    }
 }

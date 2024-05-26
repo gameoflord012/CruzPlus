@@ -9,8 +9,20 @@ namespace CruZ
     void Entity::render(sf::RenderWindow &window)
     {
     }
-    EntityWorld *Entity::getWorld()
+
+    EntityWorld *Entity::getEntityWorld()
     {
         return m_world;
+    }
+
+    class EntityWorld
+    {
+    public:
+        void removeEntity(Entity &);
+    };
+
+    Entity::~Entity()
+    {
+        m_world->removeEntity(*this);
     }
 }

@@ -6,10 +6,11 @@
 #include "CruZPlus/Memory/BlockAllocator.h"
 #include "IUpdate.h"
 #include "IRender.h"
+#include "Entity.h"
 
 namespace CruZ
 {
-    class Bullet : public IUpdate, public IRender
+    class Bullet : public Entity
     {
     public:
         Bullet(BlockAllocator &, sf::Texture &tex);
