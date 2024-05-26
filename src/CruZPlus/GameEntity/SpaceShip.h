@@ -3,13 +3,12 @@
 #include <SFML/Graphics.hpp>
 #include <box2d/box2d.h>
 
-#include "IUpdate.h"
-#include "IRender.h"
 #include "CruZPlus/Memory/BlockAllocator.h"
+#include "Entity.h"
 
 namespace CruZ
 {
-    class SpaceShip : public IUpdate, public IRender
+    class SpaceShip : public Entity
     {
     public:
         SpaceShip();

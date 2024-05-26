@@ -2,6 +2,8 @@
 
 #include "GameEntity/IUpdate.h"
 #include "GameEntity/IRender.h"
+#include "GameEntity/Entity.h"
+#include "GameEntity/EntityWorld.h"
 
 #include <box2d/box2d.h>
 #include <ctime>
@@ -13,12 +15,9 @@ namespace CruZ
     {
     public:
         Game();
-        b2World *getWorld();
+        b2World *getB2World();
+        EntityWorld *getEntityWorld();
         void run();
-        bool addUpdate(IUpdate &);
-        bool addRender(IRender &);
-        void updateAll(float);
-        void renderAll(sf::RenderWindow &);
         ~Game();
 
     private:
@@ -26,8 +25,7 @@ namespace CruZ
         const float UPDATE_INTERVAL = 1.0f / FPS;
         const clock_t CLOCK_PER_FRAME = (clock_t)(UPDATE_INTERVAL * CLOCKS_PER_SEC);
 
-        b2World *m_b2World{NULL};
-        std::vector<IUpdate *> m_updates;
-        std::vector<IRender *> m_renders;
+        EntityWorld m_entityWorld;
+        b2World *m_b2World;
     };
 }

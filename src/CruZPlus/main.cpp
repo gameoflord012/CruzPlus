@@ -23,22 +23,14 @@ int main()
     {
         TextureManager textureManager;
         Game game;
-        Physic physic(*game.getWorld());
+        Physic physic(*game.getB2World());
 
         Instances::set(game);
         Instances::set(physic);
         Instances::set(textureManager);
 
         SpaceShip spaceShip;
-        game.addUpdate(spaceShip);
-        game.addRender(spaceShip);
-
-        // sf::Texture bulletTex;
-        // assert(bulletTex.loadFromFile("res/main_ship_bullet.png"));
-        // Bullet bullet(allocator, bulletTex);
-        // game.addUpdate(bullet);
-        // game.addRender(bullet);
-
+        game.getEntityWorld()->addEntity(spaceShip);
         game.run();
     }
     catch (const std::exception &e)

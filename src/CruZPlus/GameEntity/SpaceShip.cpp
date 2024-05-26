@@ -11,7 +11,7 @@ namespace CruZ
         // create body
         b2BodyDef bodyDef;
         bodyDef.type = b2_dynamicBody;
-        m_world = Instances::get<Game>()->getWorld();
+        m_world = Instances::get<Game>()->getB2World();
         m_body = m_world->CreateBody(&bodyDef);
 
         // create fixture
