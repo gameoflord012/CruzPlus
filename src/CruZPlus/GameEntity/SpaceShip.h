@@ -5,6 +5,7 @@
 
 #include "IUpdate.h"
 #include "IRender.h"
+#include "CruZPlus/Memory/BlockAllocator.h"
 
 namespace CruZ
 {
@@ -17,6 +18,8 @@ namespace CruZ
         ~SpaceShip();
 
     private:
+        BlockAllocator m_allocator;
+
         b2Body *m_body;
         b2World *m_world;
         sf::Sprite *m_sprite;

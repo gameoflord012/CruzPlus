@@ -13,6 +13,7 @@
 #include "Instances.h"
 #include "GameEntity/Bullet.h"
 #include "Memory/BlockAllocator.h"
+#include "Memory/TexutureManager.h"
 
 using namespace CruZ;
 
@@ -20,23 +21,23 @@ int main()
 {
     try
     {
+        TextureManager textureManager;
         Game game;
-        BlockAllocator allocator;
         Physic physic(*game.getWorld());
 
         Instances::set(game);
         Instances::set(physic);
-        Instances::set(allocator);
+        Instances::set(textureManager);
 
         SpaceShip spaceShip;
         game.addUpdate(spaceShip);
         game.addRender(spaceShip);
 
-        sf::Texture bulletTex;
-        assert(bulletTex.loadFromFile("res/main_ship_bullet.png"));
-        Bullet bullet(allocator, bulletTex);
-        game.addUpdate(bullet);
-        game.addRender(bullet);
+        // sf::Texture bulletTex;
+        // assert(bulletTex.loadFromFile("res/main_ship_bullet.png"));
+        // Bullet bullet(allocator, bulletTex);
+        // game.addUpdate(bullet);
+        // game.addRender(bullet);
 
         game.run();
     }

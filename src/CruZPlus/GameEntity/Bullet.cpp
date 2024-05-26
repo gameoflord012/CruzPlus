@@ -8,7 +8,7 @@ namespace CruZ
     Bullet::Bullet(BlockAllocator &allocator, sf::Texture &tex) : m_allocator(&allocator)
     {
         m_body = INS(Physic)->CreateCircle(5, b2_kinematicBody);
-        m_body->SetLinearVelocity({0, 0});
+        m_body->SetLinearVelocity({0, 20});
 
         auto mem = allocator.Allocate(sizeof(sf::Sprite));
         m_sprite = new (mem) sf::Sprite(tex);

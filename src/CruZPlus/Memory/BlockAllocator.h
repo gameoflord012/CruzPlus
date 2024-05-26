@@ -7,7 +7,7 @@ namespace CruZ
     class BlockAllocator
     {
     public:
-        BlockAllocator(/* args */);
+        BlockAllocator();
         ~BlockAllocator();
 
         void *Allocate(int32 size);
