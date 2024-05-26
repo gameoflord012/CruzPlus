@@ -1,19 +1,18 @@
-﻿#include "GameEntity/SpaceShip.h"
-#include "Editor/Board.h"
-
-#include <SFML/Window.hpp>
+﻿#include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <ctime>
 #include <iostream>
 
 #include <box2d/box2d.h>
 
-#include "Physic.h"
+#include "BodyFactory.h"
 #include "Game.h"
-#include "Instances.h"
-#include "GameEntity/Bullet.h"
+
 #include "Memory/BlockAllocator.h"
 #include "Memory/TexutureManager.h"
+
+#include "GameEntity/Bullet.h"
+#include "GameEntity/SpaceShip.h"
 
 using namespace CruZ;
 

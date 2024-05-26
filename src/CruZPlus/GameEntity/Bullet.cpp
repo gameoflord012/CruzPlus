@@ -1,7 +1,7 @@
 #include "Bullet.h"
 
 #include "CruZPlus/Instances.h"
-#include "CruZPlus/Physic.h"
+#include "CruZPlus/BodyFactory.h"
 
 namespace CruZ
 {
@@ -9,7 +9,6 @@ namespace CruZ
     {
         m_body = INS(Physic)->CreateCircle(5, b2_kinematicBody);
         m_body->SetLinearVelocity({0, 20});
-
         auto mem = allocator.Allocate(sizeof(sf::Sprite));
         m_sprite = new (mem) sf::Sprite(tex);
     }
@@ -26,7 +25,6 @@ namespace CruZ
 
     Bullet::~Bullet()
     {
-        INS(Physic)->DestroyBody(m_body);
         m_allocator->Free(m_sprite);
     }
 }

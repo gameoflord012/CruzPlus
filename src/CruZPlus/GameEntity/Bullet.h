@@ -7,10 +7,11 @@
 #include "IUpdate.h"
 #include "IRender.h"
 #include "Entity.h"
+#include "Physic/PhysicComponent.h"
 
 namespace CruZ
 {
-    class Bullet : public Entity
+    class Bullet : public Entity, private PhysicComponent
     {
     public:
         Bullet(BlockAllocator &, sf::Texture &tex);
@@ -21,6 +22,5 @@ namespace CruZ
     private:
         BlockAllocator *m_allocator;
         sf::Sprite *m_sprite;
-        b2Body *m_body;
     };
 }

@@ -29,3 +29,5 @@ namespace CruZ
         b2World *m_b2World;
     };
 }
+
+#include "Instances.h"

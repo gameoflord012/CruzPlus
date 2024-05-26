@@ -81,7 +81,6 @@ namespace CruZ
         m_b2world->DestroyBody(m_body);
         for(size_t i = 0; i < m_bullets.size(); i++)
         {
-            getEntityWorld()->removeEntity(*m_bullets[i]);
             m_bullets[i]->~Bullet();
             m_allocator.Free(m_bullets[i]);
         }

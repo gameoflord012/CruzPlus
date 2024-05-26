@@ -10,7 +10,7 @@
 
 namespace CruZ
 {
-    class SpaceShip : public Entity
+    class SpaceShip : public Entity, public PhysicComponent
     {
     public:
         SpaceShip();
@@ -20,8 +20,6 @@ namespace CruZ
 
     private:
         BlockAllocator m_allocator;
-
-        b2Body *m_body;
         b2World *m_b2world;
         sf::Sprite *m_sprite;
 

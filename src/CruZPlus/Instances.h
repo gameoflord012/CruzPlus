@@ -35,3 +35,4 @@ namespace CruZ
 
     #define INS(x) Instances::get<x>()
 }
+

@@ -16,3 +16,5 @@ namespace CruZ
         std::unordered_map<std::string, sf::Texture *> m_textures;
     };
 }
+
+#include "CruZPlus/Instances.h"
