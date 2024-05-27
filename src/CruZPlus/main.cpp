@@ -14,6 +14,7 @@
 
 #include "GameEntity/Bullet.h"
 #include "GameEntity/SpaceShip.h"
+#include "Editor/EditorUI.h"
 
 using namespace CruZ;
 
@@ -30,7 +31,9 @@ int main()
         Instances::set(textureManager);
 
         SpaceShip spaceShip;
+        EditorUI editorUI;
         game.getEntityWorld()->addEntity(spaceShip);
+        game.getEntityWorld()->addEntity(editorUI);
         game.run();
     }
     catch (const std::exception &e)

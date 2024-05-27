@@ -2,13 +2,15 @@
 
 #include <SFML/Graphics.hpp>
 
+#include <CruZPlus/GameEntity.h>
+
 namespace CruZ
 {
-    class Board
+    class EditorUI : public Entity
     {
     public:
-        Board(/* args */);
+        EditorUI();
         void render(sf::RenderWindow &window);
-        ~Board();
+        ~EditorUI();
     };
 }

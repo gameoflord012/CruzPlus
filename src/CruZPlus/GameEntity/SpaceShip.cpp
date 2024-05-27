@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <box2d/box2d.h>
+#include <cstdio>
 
 #include "CruZPlus/BodyFactory.h"
 #include "CruZPlus/GameEntity/EntityWorld.h"
@@ -33,7 +34,9 @@ SpaceShip::SpaceShip()
 void SpaceShip::render(sf::RenderWindow &window)
 {
     sf::Vector2f bodyPosition = {m_body->GetPosition().x, m_body->GetPosition().y};
-    m_sprite->setPosition({bodyPosition.x, -bodyPosition.y});
+    float w = m_sprite->getGlobalBounds().width;
+    float h = m_sprite->getGlobalBounds().height;
+    m_sprite->setPosition({bodyPosition.x - w / 2.0f, -bodyPosition.y - h / 2.0f});
     window.draw(*m_sprite);
 }
 
@@ -60,6 +63,7 @@ void SpaceShip::update(float deltaTime)
         veloc *= speed;
 
         m_body->SetLinearVelocity(veloc);
+        printf("%f %f\n", m_body->GetPosition().x, m_body->GetPosition().y);
     }
 
     // update spawn bullet
