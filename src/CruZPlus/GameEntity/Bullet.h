@@ -4,17 +4,18 @@
 #include <box2d/box2d.h>
 
 #include "CruZPlus/Memory/BlockAllocator.h"
-#include "IUpdate.h"
-#include "IRender.h"
 #include "Entity.h"
 #include "Physic/PhysicComponent.h"
+
+class CruZ::BlockAllocator;
 
 namespace CruZ
 {
     class Bullet : public Entity, private PhysicComponent
     {
     public:
-        Bullet(BlockAllocator &, sf::Texture &tex);
+        Bullet(BlockAllocator &);
+        void setPosition(const sf::Vector2f &position);
         void update(float deltaTime);
         void render(sf::RenderWindow &);
         ~Bullet();

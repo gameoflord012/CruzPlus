@@ -4,27 +4,29 @@
 #include <box2d/box2d.h>
 #include <vector>
 
-#include "CruZPlus/Memory/BlockAllocator.h"
-#include "Entity.h"
-#include "Bullet.h"
+#include "CruZPlus/GameEntity/Entity.h"
+#include "CruZPlus/GameEntity/Physic/PhysicComponent.h"
+
+class b2World;
+class sf::Sprite;
 
 namespace CruZ
 {
-    class SpaceShip : public Entity, public PhysicComponent
-    {
-    public:
-        SpaceShip();
-        void render(sf::RenderWindow &window);
-        void update(float elapsedTime);
-        ~SpaceShip();
+class Bullet;
+class BlockAllocator;
 
-    private:
-        BlockAllocator m_allocator;
-        b2World *m_b2world;
-        sf::Sprite *m_sprite;
+class SpaceShip : public Entity, public PhysicComponent
+{
+  public:
+    SpaceShip();
+    void render(sf::RenderWindow &window);
+    void update(float elapsedTime);
+    ~SpaceShip();
 
-        bool m_lastSpace;
-
-        std::vector<Bullet *> m_bullets;
-    };
+  private:
+    BlockAllocator *m_allocator = NULL;
+    sf::Sprite *m_sprite = NULL;
+    bool m_lastSpace;
+    std::vector<Bullet *> m_bullets;
+};
 }

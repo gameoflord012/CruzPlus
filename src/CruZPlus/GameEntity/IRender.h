@@ -3,9 +3,9 @@
 #include <SFML/Graphics.hpp>
 namespace CruZ
 {
-    class IRender
-    {
-    public:
-        virtual void render(sf::RenderWindow &) = 0;
-    };
+class IRender
+{
+  public:
+    virtual void render(sf::RenderWindow &) = 0;
+};
 }

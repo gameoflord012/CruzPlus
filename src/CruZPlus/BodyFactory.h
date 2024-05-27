@@ -2,16 +2,17 @@
 
 namespace CruZ
 {
-    class Physic
-    {
-    public:
-        Physic(b2World &world);
-        b2Body *CreateCircle(float r, b2BodyType bodyType);
-        void DestroyBody(b2Body *body);
+class BodyFactory
+{
+  public:
+    BodyFactory(b2World &world);
+    b2Body *CreateCircle(float r, b2BodyType bodyType);
+    b2Body *CreateBody(b2BodyDef &);
+    void DestroyBody(b2Body &body);
 
-    private:
-        b2World *m_world;
-    };
-}
+  private:
+    b2World *m_world;
+};
+} // namespace CruZ
 
 #include "Instances.h"

@@ -1,4 +1,5 @@
 #include "Entity.h"
+#include "EntityWorld.h"
 
 namespace CruZ
 {
@@ -14,12 +15,6 @@ namespace CruZ
     {
         return m_world;
     }
-
-    class EntityWorld
-    {
-    public:
-        void removeEntity(Entity &);
-    };
 
     Entity::~Entity()
     {

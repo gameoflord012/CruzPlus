@@ -8,8 +8,10 @@
 #include "BodyFactory.h"
 #include "Game.h"
 
+#include "CruZPlus/GameEntity/EntityWorld.h"
+
 #include "Memory/BlockAllocator.h"
-#include "Memory/TexutureManager.h"
+#include "Memory/TextureManager.h"
 
 #include "GameEntity/Bullet.h"
 #include "GameEntity/SpaceShip.h"
@@ -22,7 +24,7 @@ int main()
     {
         TextureManager textureManager;
         Game game;
-        Physic physic(*game.getB2World());
+        BodyFactory physic(*game.getB2World());
 
         Instances::set(game);
         Instances::set(physic);

@@ -9,6 +9,6 @@ namespace CruZ
 
     PhysicComponent::~PhysicComponent()
     {
-        INS(Physic)->DestroyBody(m_body);
+        INS(BodyFactory)->DestroyBody(*m_body);
     }
 }
