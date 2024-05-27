@@ -7,7 +7,7 @@
 #include "CruZPlus/GameEntity/EntityWorld.h"
 #include "Bullet.h"
 #include "CruZPlus/Game.h"
-#include "CruZPlus/Memory/TextureManager.h"
+#include "CruZPlus/TextureManager.h"
 #include "CruzPlus/Memory/BlockAllocator.h"
 
 namespace CruZ

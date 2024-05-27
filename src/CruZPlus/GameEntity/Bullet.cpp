@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "CruZPlus/Memory/TextureManager.h"
+#include "CruZPlus/TextureManager.h"
 #include "CruZPlus/BodyFactory.h"
 
 namespace CruZ

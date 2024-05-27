@@ -5,13 +5,12 @@
 
 #include <box2d/box2d.h>
 
-#include "BodyFactory.h"
+#include "Physic.h"
+#include "GameEntity.h"
 #include "Game.h"
 
-#include "CruZPlus/GameEntity/EntityWorld.h"
-
 #include "Memory/BlockAllocator.h"
-#include "Memory/TextureManager.h"
+#include "TextureManager.h"
 
 #include "GameEntity/Bullet.h"
 #include "GameEntity/SpaceShip.h"
