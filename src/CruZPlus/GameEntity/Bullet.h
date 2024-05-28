@@ -3,9 +3,9 @@
 #include <SFML/Graphics.hpp>
 #include <box2d/box2d.h>
 
-#include "CruZPlus/Memory/BlockAllocator.h"
+#include "CruZPlus/Memory.h"
+#include "CruZPlus/Physic.h"
 #include "Entity.h"
-#include "Physic/PhysicComponent.h"
 
 class CruZ::BlockAllocator;
 

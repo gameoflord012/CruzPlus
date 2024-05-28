@@ -4,10 +4,10 @@
 #include <box2d/box2d.h>
 #include <cstdio>
 
-#include "CruZPlus/BodyFactory.h"
-#include "CruZPlus/GameEntity/EntityWorld.h"
 #include "Bullet.h"
+#include "CruZPlus/BodyFactory.h"
 #include "CruZPlus/Game.h"
+#include "CruZPlus/GameEntity/EntityWorld.h"
 #include "CruZPlus/TextureManager.h"
 #include "CruzPlus/Memory/BlockAllocator.h"
 
@@ -29,14 +29,13 @@ SpaceShip::SpaceShip()
 
     // create sprite
     m_sprite = new sf::Sprite(*INS(TextureManager)->get("res/main_ship.png"));
+    m_sprite->setOrigin(m_sprite->getGlobalBounds().getSize() / 2.0f);
 }
 
 void SpaceShip::render(sf::RenderWindow &window)
 {
-    sf::Vector2f bodyPosition = {m_body->GetPosition().x, m_body->GetPosition().y};
-    float w = m_sprite->getGlobalBounds().width;
-    float h = m_sprite->getGlobalBounds().height;
-    m_sprite->setPosition({bodyPosition.x - w / 2.0f, -bodyPosition.y - h / 2.0f});
+    sf::Vector2f bodyPosition = {};
+    m_sprite->setPosition({m_body->GetPosition().x, -m_body->GetPosition().y});
     window.draw(*m_sprite);
 }
 
@@ -63,18 +62,13 @@ void SpaceShip::update(float deltaTime)
         veloc *= speed;
 
         m_body->SetLinearVelocity(veloc);
-        printf("%f %f\n", m_body->GetPosition().x, m_body->GetPosition().y);
     }
 
     // update spawn bullet
     {
         if (m_lastSpace == false && sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
         {
-            void *mem = m_allocator->Allocate(sizeof(Bullet));
-            Bullet *bullet = new (mem) Bullet(*m_allocator);
-            bullet->setPosition({m_body->GetPosition().x, m_body->GetPosition().y});
-            m_bullets.push_back(bullet);
-            getEntityWorld()->addEntity(*bullet);
+            SpawnBullet();
         }
     }
 
@@ -82,6 +76,15 @@ void SpaceShip::update(float deltaTime)
     {
         m_lastSpace = sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space);
     }
+}
+
+void SpaceShip::SpawnBullet()
+{
+    void *mem = m_allocator->Allocate(sizeof(Bullet));
+    Bullet *bullet = new (mem) Bullet(*m_allocator);
+    bullet->setPosition({m_body->GetPosition().x, m_body->GetPosition().y + BULLET_OFFSTE_Y});
+    m_bullets.push_back(bullet);
+    getEntityWorld()->addEntity(*bullet);
 }
 
 SpaceShip::~SpaceShip()

@@ -5,7 +5,7 @@
 #include <vector>
 
 #include "CruZPlus/GameEntity/Entity.h"
-#include "CruZPlus/GameEntity/Physic/PhysicComponent.h"
+#include "CruZPlus/Physic.h"
 
 class b2World;
 class sf::Sprite;
@@ -21,9 +21,12 @@ class SpaceShip : public Entity, public PhysicComponent
     SpaceShip();
     void render(sf::RenderWindow &window);
     void update(float elapsedTime);
+    void SpawnBullet();
     ~SpaceShip();
 
   private:
+    const float BULLET_OFFSTE_Y = 15;
+
     BlockAllocator *m_allocator = NULL;
     sf::Sprite *m_sprite = NULL;
     bool m_lastSpace;
