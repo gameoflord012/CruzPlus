@@ -5,8 +5,8 @@
 
 add_executable(CruZPlus ${source_files})
 
-target_compile_options(CruZPlus PRIVATE -W3)
+target_compile_options(CruZPlus PRIVATE -W)
 
 target_link_libraries(CruZPlus 
-	SFML::Window SFML::Graphics box2d
+	sfml-window sfml-graphics box2d
 )
