@@ -3,11 +3,11 @@
 
 namespace CruZ
 {
-    void Entity::update(float deltaTime)
+    void Entity::update(float)
     {
     }
 
-    void Entity::render(sf::RenderWindow &window)
+    void Entity::render(sf::RenderWindow &)
     {
     }
 

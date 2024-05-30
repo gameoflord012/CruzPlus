@@ -1,4 +1,6 @@
 # cmake build
+*/imgui.ini
+
 out/build/
 
 .vs/

@@ -4,8 +4,12 @@
 #include <box2d/box2d.h>
 #include <cassert>
 
-#include "CruZPlus/Settings.h"
+#include <imgui-SFML.h>
+#include <imgui.h>
+
+#include "CruZPlus/Helper/TimeHelper.h"
 #include "CruZPlus/GameEntity/EntityWorld.h"
+#include "CruZPlus/Settings.h"
 
 namespace CruZ
 {
@@ -30,37 +34,52 @@ void Game::run()
 {
     // init window
     sf::RenderWindow window(sf::VideoMode(sf::Vector2u(1000, 600)), "My window");
+    assert(ImGui::SFML::Init(window));
+
     sf::View view = window.getDefaultView();
     view.setCenter({0, 0});
     view.zoom(ZOOM);
     window.setView(view);
 
-    std::clock_t gameClock = 0;
+    sf::Clock gameClock;
+    float elapsedSeconds = 0;
+
     while (window.isOpen())
     {
         sf::Event event;
         while (event = window.pollEvent())
         {
+            ImGui::SFML::ProcessEvent(window, event);
+
             if (event.is<sf::Event::Closed>())
             {
                 window.close();
             }
         }
 
-        while ((std::clock() - gameClock) > CLOCK_PER_FRAME)
+        elapsedSeconds += gameClock.restart().asSeconds();
+        while (elapsedSeconds > UPDATE_DURATION)
         {
-            gameClock += CLOCK_PER_FRAME;
-
-            m_b2World->Step(UPDATE_INTERVAL, 6, 2);
-            m_entityWorld->updateAll(UPDATE_INTERVAL);
+            elapsedSeconds -= UPDATE_DURATION;
+            {
+                ImGui::SFML::Update(window, Helper::convertToTime(UPDATE_DURATION));
+                m_b2World->Step(UPDATE_DURATION, 6, 2);
+                m_entityWorld->updateAll(UPDATE_DURATION);
+            }
         }
+
+        ImGui::NewFrame();
+        ImGui::ShowDemoWindow();
 
         window.clear(sf::Color::Blue);
         {
             m_entityWorld->renderAll(window);
+            ImGui::SFML::Render(window);
         }
         window.display();
     }
+
+    ImGui::SFML::Shutdown();
 }
 
 Game::~Game()

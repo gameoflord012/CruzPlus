@@ -1,6 +1,6 @@
 #pragma once
 
-#include <ctime>
+#include <chrono>
 #include <vector>
 
 class b2World;
@@ -19,9 +19,8 @@ class Game
     ~Game();
 
   private:
-    const float FPS = 60;
-    const float UPDATE_INTERVAL = 1.0f / FPS;
-    const clock_t CLOCK_PER_FRAME = (clock_t)(UPDATE_INTERVAL * CLOCKS_PER_SEC);
+    static constexpr int FPS{60};
+    static constexpr float UPDATE_DURATION{1.0f / 60};
 
     EntityWorld *m_entityWorld;
     b2World *m_b2World;

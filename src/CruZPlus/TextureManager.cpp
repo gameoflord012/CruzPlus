@@ -24,9 +24,9 @@ namespace CruZ
 
     TextureManager::~TextureManager()
     {
-        for (auto &it = m_textures.begin(); it != m_textures.end(); ++it)
+        for (const auto &it : m_textures)
         {
-            delete it->second;
+            delete it.second;
         }
     }
 }

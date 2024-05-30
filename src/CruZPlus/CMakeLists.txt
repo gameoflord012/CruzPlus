@@ -8,6 +8,7 @@ target_include_directories(CruZPlus PRIVATE ..)
 
 target_link_libraries(CruZPlus 
 	SFML::Window SFML::Graphics
+	imgui-sfml
 	box2d
 )
 

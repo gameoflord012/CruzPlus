@@ -39,7 +39,7 @@ void SpaceShip::render(sf::RenderWindow &window)
     window.draw(*m_sprite);
 }
 
-void SpaceShip::update(float deltaTime)
+void SpaceShip::update(float)
 {
     // update velocity inputs
     {

@@ -25,7 +25,7 @@ void Bullet::setPosition(const sf::Vector2f &position)
     m_body->SetTransform({position.x, position.y}, 0);
 }
 
-void Bullet::update(float deltaTime)
+void Bullet::update(float)
 {
 }
 
