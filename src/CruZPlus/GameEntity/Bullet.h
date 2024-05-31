@@ -3,14 +3,14 @@
 #include <SFML/Graphics.hpp>
 #include <box2d/box2d.h>
 
-#include "CruZPlus/Memory.h"
 #include "CruZPlus/Physic.h"
 #include "Entity.h"
 
-class CruZ::BlockAllocator;
-
 namespace CruZ
 {
+class BlockAllocator;
+class SpriteSheet;
+
 class Bullet : public Entity, private PhysicComponent
 {
   public:
@@ -22,6 +22,7 @@ class Bullet : public Entity, private PhysicComponent
 
   private:
     BlockAllocator *m_allocator;
+    SpriteSheet *m_spriteSheet;
     sf::Sprite *m_sprite;
 };
 } // namespace CruZ

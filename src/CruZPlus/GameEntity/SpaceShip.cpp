@@ -93,7 +93,6 @@ SpaceShip::~SpaceShip()
 {
     for (size_t i = 0; i < m_bullets.size(); i++)
     {
-        m_bullets[i]->~Bullet();
         m_allocator->Free(m_bullets[i]);
     }
 

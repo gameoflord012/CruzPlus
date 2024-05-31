@@ -47,7 +47,7 @@ void Game::run()
     sf::Clock gameClock;
     float elapsedSeconds = 0;
 
-    printf("%s\n", std::filesystem::current_path().string().c_str());
+    // printf("%s\n", std::filesystem::current_path().string().c_str());
 
     while (window.isOpen())
     {
