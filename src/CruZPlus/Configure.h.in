@@ -1,0 +1,3 @@
+#pragma once
+
+#define CRUZ_BINARY_DIR "${CRUZ_BINARY_DIR}"

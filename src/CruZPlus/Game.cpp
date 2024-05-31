@@ -3,13 +3,16 @@
 #include <SFML/Graphics.hpp>
 #include <box2d/box2d.h>
 #include <cassert>
+#include <cstdio>
+#include <filesystem>
 
 #include <imgui-SFML.h>
 #include <imgui.h>
 
-#include "CruZPlus/Helper/TimeHelper.h"
 #include "CruZPlus/GameEntity/EntityWorld.h"
+#include "CruZPlus/Helper/TimeHelper.h"
 #include "CruZPlus/Settings.h"
+#include "CruZPlus/Configure.h"
 
 namespace CruZ
 {
@@ -44,6 +47,8 @@ void Game::run()
     sf::Clock gameClock;
     float elapsedSeconds = 0;
 
+    printf("%s\n", std::filesystem::current_path().string().c_str());
+
     while (window.isOpen())
     {
         sf::Event event;
@@ -70,6 +75,7 @@ void Game::run()
 
         ImGui::NewFrame();
         ImGui::ShowDemoWindow();
+        ImGui::GetIO().IniFilename = CRUZ_BINARY_DIR "/imgui.ini";
 
         window.clear(sf::Color::Blue);
         {

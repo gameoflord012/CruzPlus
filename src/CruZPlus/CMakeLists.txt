@@ -1,9 +1,17 @@
-﻿file(GLOB_RECURSE source_files
-	RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
-	${CMAKE_CURRENT_SOURCE_DIR}/*.cpp
+﻿set(CRUZ_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
+set(CRUZ_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR})
+
+configure_file(
+	${CRUZ_SOURCE_DIR}/Configure.h.in
+	${CRUZ_SOURCE_DIR}/Configure.h
 )
 
-add_executable(CruZPlus ${source_files})
+file(GLOB_RECURSE CRUZ_SOURCE_FILES
+	RELATIVE ${CRUZ_SOURCE_DIR}
+	${CRUZ_SOURCE_DIR}/*.cpp
+)
+
+add_executable(CruZPlus ${CRUZ_SOURCE_FILES})
 target_include_directories(CruZPlus PRIVATE ..)
 
 target_link_libraries(CruZPlus 

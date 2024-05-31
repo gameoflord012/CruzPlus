@@ -3,7 +3,9 @@
 #include <SFML/Graphics.hpp>
 #include <box2d/box2d.h>
 #include <cstdio>
+#include <filesystem>
 
+#include "CruZPlus/Memory.h"
 #include "Bullet.h"
 #include "CruZPlus/BodyFactory.h"
 #include "CruZPlus/Game.h"
