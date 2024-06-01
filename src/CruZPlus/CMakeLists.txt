@@ -12,6 +12,7 @@ file(GLOB_RECURSE CRUZ_SOURCE_FILES
 )
 
 add_executable(CruZPlus ${CRUZ_SOURCE_FILES})
+set_property(TARGET CruZPlus PROPERTY CXX_STANDARD 20)
 target_include_directories(CruZPlus PRIVATE ..)
 
 target_link_libraries(CruZPlus 

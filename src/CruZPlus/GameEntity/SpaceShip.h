@@ -29,7 +29,6 @@ class SpaceShip : public Entity, public PhysicComponent
 
     BlockAllocator *m_allocator = NULL;
     sf::Sprite *m_sprite = NULL;
-    bool m_lastSpace;
     std::vector<Bullet *> m_bullets;
 };
 }

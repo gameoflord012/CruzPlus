@@ -5,13 +5,15 @@
 #include <cstdio>
 #include <filesystem>
 
-#include "CruZPlus/Memory.h"
 #include "Bullet.h"
+#include "CruZPlus/DebugUltility.h"
+#include "CruZPlus/Memory.h"
 #include "CruZPlus/BodyFactory.h"
 #include "CruZPlus/Game.h"
 #include "CruZPlus/GameEntity/EntityWorld.h"
 #include "CruZPlus/TextureManager.h"
 #include "CruzPlus/Memory/BlockAllocator.h"
+#include "CruZPlus/Input.h"
 
 namespace CruZ
 {
@@ -48,13 +50,13 @@ void SpaceShip::update(float)
         float speed = 100;
 
         b2Vec2 veloc(0, 0);
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
+        if (INS(Input)->isKeyPressed(sf::Keyboard::Key::A))
             veloc += {-1, 0};
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
+        if (INS(Input)->isKeyPressed(sf::Keyboard::Key::D))
             veloc += {1, 0};
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
+        if (INS(Input)->isKeyPressed(sf::Keyboard::Key::W))
             veloc += {0, 1};
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
+        if (INS(Input)->isKeyPressed(sf::Keyboard::Key::S))
             veloc += {0, -1};
 
         if (veloc.Length() < 1)
@@ -66,17 +68,14 @@ void SpaceShip::update(float)
         m_body->SetLinearVelocity(veloc);
     }
 
+    // PRINTF("Space press: %s\n", sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) ? "TRUE" : "FALSE");
+
     // update spawn bullet
     {
-        if (m_lastSpace == false && sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
+        if (INS(Input)->isKeyJustPressed(sf::Keyboard::Key::Space))
         {
             SpawnBullet();
         }
-    }
-
-    // update last key states
-    {
-        m_lastSpace = sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space);
     }
 }
 

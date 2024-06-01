@@ -9,17 +9,21 @@
 #include <imgui-SFML.h>
 #include <imgui.h>
 
+#include "CruZPlus/Input.h"
+#include "CruZPlus/Configure.h"
 #include "CruZPlus/GameEntity/EntityWorld.h"
 #include "CruZPlus/Helper/TimeHelper.h"
 #include "CruZPlus/Settings.h"
-#include "CruZPlus/Configure.h"
 
 namespace CruZ
 {
 Game::Game()
 {
+    m_input = new Input;
     m_entityWorld = new EntityWorld;
     m_b2World = new b2World(b2Vec2(0, -10));
+
+    Instances::set(m_input);
 }
 
 b2World *Game::getB2World()
@@ -54,12 +58,13 @@ void Game::run()
         sf::Event event;
         while (event = window.pollEvent())
         {
-            ImGui::SFML::ProcessEvent(window, event);
-
             if (event.is<sf::Event::Closed>())
             {
                 window.close();
             }
+
+            ImGui::SFML::ProcessEvent(window, event);
+            m_input->processEvent(event);
         }
 
         elapsedSeconds += gameClock.restart().asSeconds();
@@ -67,6 +72,7 @@ void Game::run()
         {
             elapsedSeconds -= UPDATE_DURATION;
             {
+                m_input->updateInput();
                 ImGui::SFML::Update(window, Helper::convertToTime(UPDATE_DURATION));
                 m_b2World->Step(UPDATE_DURATION, 6, 2);
                 m_entityWorld->updateAll(UPDATE_DURATION);
