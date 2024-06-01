@@ -1,10 +1,13 @@
 #include "Game.h"
 
-#include <SFML/Graphics.hpp>
-#include <box2d/box2d.h>
 #include <cassert>
 #include <cstdio>
 #include <filesystem>
+
+#include <SFML/Graphics.hpp>
+#include <SFML/Graphics/View.hpp>
+
+#include <box2d/box2d.h>
 
 #include <imgui-SFML.h>
 #include <imgui.h>
@@ -43,10 +46,10 @@ void Game::run()
     sf::RenderWindow window(sf::VideoMode(sf::Vector2u(1000, 600)), "My window");
     assert(ImGui::SFML::Init(window));
 
-    sf::View view = window.getDefaultView();
-    view.setCenter({0, 0});
-    view.zoom(ZOOM);
-    window.setView(view);
+    m_view = new sf::View({0, 0}, window.getDefaultView().getSize());
+    m_view->setCenter({0, 0});
+    m_view->zoom(ZOOM);
+    window.setView(*m_view);
 
     sf::Clock gameClock;
     float elapsedSeconds = 0;
@@ -98,5 +101,6 @@ Game::~Game()
 {
     delete m_b2World;
     delete m_entityWorld;
+    delete m_view;
 }
 } // namespace CruZ

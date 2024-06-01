@@ -3,6 +3,11 @@
 #include <chrono>
 #include <vector>
 
+namespace sf
+{
+class View;
+}
+
 class b2World;
 
 namespace CruZ
@@ -16,6 +21,7 @@ class Game
     Game();
     b2World *getB2World();
     EntityWorld *getEntityWorld();
+    sf::View *getView();
     void run();
     ~Game();
 
@@ -25,7 +31,8 @@ class Game
 
     EntityWorld *m_entityWorld{};
     b2World *m_b2World{};
-    Input *m_input;
+    Input *m_input{};
+    sf::View *m_view{};
 };
 } // namespace CruZ
 
