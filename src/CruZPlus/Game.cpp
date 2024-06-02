@@ -40,16 +40,20 @@ EntityWorld *Game::getEntityWorld()
     return m_entityWorld;
 }
 
+sf::View *Game::getView()
+{
+    return m_view;
+}
+
 void Game::run()
 {
     // init window
-    sf::RenderWindow window(sf::VideoMode(sf::Vector2u(1000, 600)), "My window");
+    sf::RenderWindow window(sf::VideoMode(sf::Vector2u(1920, 1080)), "My window");
     assert(ImGui::SFML::Init(window));
 
     m_view = new sf::View({0, 0}, window.getDefaultView().getSize());
+    m_view->zoom(Setting::ZOOM);
     m_view->setCenter({0, 0});
-    m_view->zoom(ZOOM);
-    window.setView(*m_view);
 
     sf::Clock gameClock;
     float elapsedSeconds = 0;
@@ -88,6 +92,7 @@ void Game::run()
 
         window.clear(sf::Color::Blue);
         {
+            window.setView(*m_view);
             m_entityWorld->renderAll(window);
             ImGui::SFML::Render(window);
         }

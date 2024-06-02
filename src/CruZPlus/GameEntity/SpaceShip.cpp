@@ -6,14 +6,15 @@
 #include <filesystem>
 
 #include "Bullet.h"
-#include "CruZPlus/DebugUltility.h"
-#include "CruZPlus/Memory.h"
 #include "CruZPlus/BodyFactory.h"
+#include "CruZPlus/Conversion.h"
+#include "CruZPlus/DebugUltility.h"
 #include "CruZPlus/Game.h"
 #include "CruZPlus/GameEntity/EntityWorld.h"
+#include "CruZPlus/Input.h"
+#include "CruZPlus/Memory.h"
 #include "CruZPlus/TextureManager.h"
 #include "CruzPlus/Memory/BlockAllocator.h"
-#include "CruZPlus/Input.h"
 
 namespace CruZ
 {
@@ -76,6 +77,12 @@ void SpaceShip::update(float)
         {
             SpawnBullet();
         }
+    }
+
+    // update camera position
+    {
+        INS(Game)->getView()->setCenter({m_body->GetPosition().x, -m_body->GetPosition().y});
+        // INS(Game)->getView()->setCenter({0, 100});
     }
 }
 
