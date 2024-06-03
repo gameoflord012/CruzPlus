@@ -41,6 +41,6 @@ template <typename InstanceTy> InstanceTy *Instances::get()
     auto ins = (InstanceTy *)s_intances[tyIndex];
     return assert(ins), ins;
 }
-
-#define INS(x) Instances::get<x>()
 } // namespace CruZ
+
+#define INS(x) CruZ::Instances::get<x>()

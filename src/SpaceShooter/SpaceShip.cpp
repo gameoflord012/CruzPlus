@@ -5,27 +5,28 @@
 #include <cstdio>
 #include <filesystem>
 
-#include "Bullet.h"
-#include "CruZPlus/BodyFactory.h"
-#include "CruZPlus/Conversion.h"
-#include "CruZPlus/DebugUltility.h"
-#include "CruZPlus/Game.h"
-#include "CruZPlus/GameEntity/EntityWorld.h"
-#include "CruZPlus/Input.h"
-#include "CruZPlus/Memory.h"
-#include "CruZPlus/TextureManager.h"
-#include "CruzPlus/Memory/BlockAllocator.h"
+#include <CruZPlus/BodyFactory.h>
+#include <CruZPlus/Conversion.h>
+#include <CruZPlus/DebugUltility.h>
+#include <CruZPlus/Game.h>
+#include <CruZPlus/GameEntity/EntityWorld.h>
+#include <CruZPlus/Input.h>
+#include <CruZPlus/Memory.h>
+#include <CruZPlus/TextureManager.h>
+#include <CruzPlus/Memory/BlockAllocator.h>
 
-namespace CruZ
+#include "Bullet.h"
+
+namespace SpaceShooter
 {
 SpaceShip::SpaceShip()
 {
-    m_allocator = new BlockAllocator;
+    m_allocator = new CruZ::BlockAllocator;
 
     // create body
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
-    m_body = INS(BodyFactory)->CreateBody(bodyDef);
+    m_body = INS(CruZ::BodyFactory)->CreateBody(bodyDef);
 
     // create fixture
     b2PolygonShape boxShape;
@@ -33,7 +34,7 @@ SpaceShip::SpaceShip()
     m_body->CreateFixture(&boxShape, 0);
 
     // create sprite
-    m_sprite = new sf::Sprite(*INS(TextureManager)->get("res/main_ship.png"));
+    m_sprite = new sf::Sprite(*INS(CruZ::TextureManager)->get("res/main_ship.png"));
     m_sprite->setOrigin(m_sprite->getGlobalBounds().getSize() / 2.0f);
 }
 
@@ -51,13 +52,13 @@ void SpaceShip::update(float)
         float speed = 100;
 
         b2Vec2 veloc(0, 0);
-        if (INS(Input)->isKeyPressed(sf::Keyboard::Key::A))
+        if (INS(CruZ::Input)->isKeyPressed(sf::Keyboard::Key::A))
             veloc += {-1, 0};
-        if (INS(Input)->isKeyPressed(sf::Keyboard::Key::D))
+        if (INS(CruZ::Input)->isKeyPressed(sf::Keyboard::Key::D))
             veloc += {1, 0};
-        if (INS(Input)->isKeyPressed(sf::Keyboard::Key::W))
+        if (INS(CruZ::Input)->isKeyPressed(sf::Keyboard::Key::W))
             veloc += {0, 1};
-        if (INS(Input)->isKeyPressed(sf::Keyboard::Key::S))
+        if (INS(CruZ::Input)->isKeyPressed(sf::Keyboard::Key::S))
             veloc += {0, -1};
 
         if (veloc.Length() < 1)
@@ -73,7 +74,7 @@ void SpaceShip::update(float)
 
     // update spawn bullet
     {
-        if (INS(Input)->isKeyJustPressed(sf::Keyboard::Key::Space))
+        if (INS(CruZ::Input)->isKeyJustPressed(sf::Keyboard::Key::Space))
         {
             SpawnBullet();
         }
@@ -81,7 +82,7 @@ void SpaceShip::update(float)
 
     // update camera position
     {
-        INS(Game)->getView()->setCenter({m_body->GetPosition().x, -m_body->GetPosition().y});
+        INS(CruZ::Game)->getView()->setCenter({m_body->GetPosition().x, -m_body->GetPosition().y});
         // INS(Game)->getView()->setCenter({0, 100});
     }
 }

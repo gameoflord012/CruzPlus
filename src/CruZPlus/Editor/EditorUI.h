@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 
 #include <CruZPlus/GameEntity.h>
+#include <imgui/imgui.h>
 
 namespace CruZ
 {

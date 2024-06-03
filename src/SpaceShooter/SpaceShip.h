@@ -4,18 +4,21 @@
 #include <box2d/box2d.h>
 #include <vector>
 
-#include "CruZPlus/GameEntity/Entity.h"
-#include "CruZPlus/Physic.h"
+#include <CruZPlus/GameEntity.h>
+#include <CruZPlus/Physic.h>
 
 class b2World;
 class sf::Sprite;
 
 namespace CruZ
 {
-class Bullet;
 class BlockAllocator;
+}
+namespace SpaceShooter
+{
+class Bullet;
 
-class SpaceShip : public Entity, public PhysicComponent
+class SpaceShip : public CruZ::Entity, public CruZ::PhysicComponent
 {
   public:
     SpaceShip();
@@ -27,8 +30,8 @@ class SpaceShip : public Entity, public PhysicComponent
   private:
     const float BULLET_OFFSTE_Y = 15;
 
-    BlockAllocator *m_allocator = NULL;
+    CruZ::BlockAllocator *m_allocator = NULL;
     sf::Sprite *m_sprite = NULL;
     std::vector<Bullet *> m_bullets;
 };
-}
+} // namespace SpaceShooter

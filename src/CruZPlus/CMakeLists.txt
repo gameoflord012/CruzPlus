@@ -1,24 +1,24 @@
-﻿set(CRUZ_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
-set(CRUZ_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR})
+﻿set(CRUZ_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR})
+set(SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 
 configure_file(
-	${CRUZ_SOURCE_DIR}/Configure.h.in
-	${CRUZ_SOURCE_DIR}/Configure.h
+	${SOURCE_DIR}/Configure.h.in
+	${SOURCE_DIR}/Configure.h
 )
 
-file(GLOB_RECURSE CRUZ_SOURCE_FILES
-	RELATIVE ${CRUZ_SOURCE_DIR}
-	${CRUZ_SOURCE_DIR}/*.cpp
+file(GLOB_RECURSE SOURCE_FILES
+	RELATIVE ${SOURCE_DIR}
+	${SOURCE_DIR}/*.cpp
 )
+list(FILTER SOURCE_FILES EXCLUDE REGEX "Editor/.*" )
 
-add_executable(CruZPlus ${CRUZ_SOURCE_FILES})
-set_property(TARGET CruZPlus PROPERTY CXX_STANDARD 20)
-target_include_directories(CruZPlus PRIVATE ..)
+add_library(cruzplus-common ${SOURCE_FILES})
 
-target_link_libraries(CruZPlus 
-	SFML::Window SFML::Graphics
-	imgui-sfml
-	box2d
+set_property(TARGET cruzplus-common PROPERTY CXX_STANDARD 20)
+target_compile_options(cruzplus-common PRIVATE -W4)
+
+target_include_directories(cruzplus-common PUBLIC ..)
+target_link_libraries(cruzplus-common
+	PUBLIC SFML::Window SFML::Graphics
+	PUBLIC box2d
 )
-
-target_compile_options(CruZPlus PRIVATE -W4)

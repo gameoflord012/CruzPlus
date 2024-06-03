@@ -14,21 +14,24 @@ namespace CruZ
 {
 class EntityWorld;
 class Input;
+class TextureManager;
+class BodyFactory;
 
 class Game
 {
   public:
     Game();
+    ~Game();
+
+    void run();
+    
     b2World *getB2World();
     EntityWorld *getEntityWorld();
     sf::View *getView();
-    void run();
-    ~Game();
 
   private:
-    static constexpr int FPS{60};
-    static constexpr float UPDATE_DURATION{1.0f / 60};
-
+    TextureManager *m_textureManager{};
+    BodyFactory *m_bodyFactory{};
     EntityWorld *m_entityWorld{};
     b2World *m_b2World{};
     Input *m_input{};
