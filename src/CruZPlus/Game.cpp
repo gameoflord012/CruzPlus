@@ -6,6 +6,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/View.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
 
 #include <box2d/box2d.h>
 
@@ -26,9 +27,13 @@ namespace CruZ
 {
 Game::Game()
 {
-    m_entityWorld = new EntityWorld;
+    m_window = new sf::RenderWindow(sf::VideoMode(sf::Vector2u(1920, 1080)), "My window");
+    m_view = new sf::View({0, 0}, m_window->getDefaultView().getSize());
+    m_view->setCenter({0, 0});
+
     m_b2World = new b2World(b2Vec2(0, -10));
 
+    m_entityWorld = new EntityWorld;
     m_textureManager = new TextureManager;
     m_bodyFactory = new BodyFactory(*m_b2World);
     m_input = new Input;
@@ -59,28 +64,22 @@ sf::View *Game::getView()
 void Game::run()
 {
     // init window
-    sf::RenderWindow window(sf::VideoMode(sf::Vector2u(1920, 1080)), "My window");
 #if CRUZ_EDITOR
     assert(ImGui::SFML::Init(window));
 #endif
-
-    m_view = new sf::View({0, 0}, window.getDefaultView().getSize());
-    m_view->zoom(Setting::ZOOM);
-    m_view->setCenter({0, 0});
-
     sf::Clock gameClock;
     float elapsedSeconds = 0;
 
     // printf("%s\n", std::filesystem::current_path().string().c_str());
 
-    while (window.isOpen())
+    while (m_window->isOpen())
     {
         sf::Event event;
-        while (event = window.pollEvent(), event)
+        while (event = m_window->pollEvent(), event)
         {
             if (event.is<sf::Event::Closed>())
             {
-                window.close();
+                m_window->close();
             }
 #if CRUZ_EDITOR
             ImGui::SFML::ProcessEvent(window, event);
@@ -106,15 +105,15 @@ void Game::run()
         ImGui::ShowDemoWindow();
         ImGui::GetIO().IniFilename = CRUZ_BINARY_DIR "/imgui.ini";
 #endif
-        window.clear(sf::Color::Blue);
+        m_window->clear(sf::Color::Blue);
         {
-            window.setView(*m_view);
-            m_entityWorld->renderAll(window);
+            m_window->setView(*m_view);
+            m_entityWorld->renderAll(*m_window);
 #if CRUZ_EDITOR
             ImGui ::SFML::Render(window);
 #endif
         }
-        window.display();
+        m_window->display();
     }
 #if CRUZ_EDITOR
     ImGui::SFML::Shutdown();
@@ -126,5 +125,9 @@ Game::~Game()
     delete m_b2World;
     delete m_entityWorld;
     delete m_view;
+    delete m_input;
+    delete m_window;
+    delete m_view;
+    delete m_bodyFactory;
 }
 } // namespace CruZ

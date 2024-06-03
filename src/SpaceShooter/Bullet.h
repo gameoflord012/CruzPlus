@@ -18,7 +18,7 @@ namespace SpaceShooter
 class Bullet : public CruZ::Entity, private CruZ::PhysicComponent
 {
   public:
-    Bullet(CruZ::BlockAllocator &);
+    Bullet();
     ~Bullet();
     
     void setPosition(const sf::Vector2f &position);
@@ -28,9 +28,8 @@ class Bullet : public CruZ::Entity, private CruZ::PhysicComponent
   private:
     const float BULLET_SPEED = 100;
 
-    CruZ::BlockAllocator *m_allocator;
-    CruZ::SpriteSheet *m_spriteSheet;
-    CruZ::AnimatedSprite *m_animatedSprite;
-    sf::Sprite *m_sprite;
+    sf::Sprite *m_sprite{};
+    CruZ::SpriteSheet *m_spriteSheet{};
+    CruZ::AnimatedSprite *m_animatedSprite{};
 };
 } // namespace CruZ

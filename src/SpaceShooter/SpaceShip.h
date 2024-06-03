@@ -22,16 +22,17 @@ class SpaceShip : public CruZ::Entity, public CruZ::PhysicComponent
 {
   public:
     SpaceShip();
+    ~SpaceShip();
+
     void render(sf::RenderWindow &window);
     void update(float elapsedTime);
     void SpawnBullet();
-    ~SpaceShip();
 
   private:
     const float BULLET_OFFSTE_Y = 15;
+    const float SPACESHIP_SPEED = 300.0f;
 
-    CruZ::BlockAllocator *m_allocator = NULL;
-    sf::Sprite *m_sprite = NULL;
+    sf::Sprite *m_sprite{};
     std::vector<Bullet *> m_bullets;
 };
 } // namespace SpaceShooter

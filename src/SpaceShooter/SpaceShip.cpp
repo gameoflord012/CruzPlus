@@ -21,8 +21,6 @@ namespace SpaceShooter
 {
 SpaceShip::SpaceShip()
 {
-    m_allocator = new CruZ::BlockAllocator;
-
     // create body
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
@@ -49,8 +47,6 @@ void SpaceShip::update(float)
 {
     // update velocity inputs
     {
-        float speed = 100;
-
         b2Vec2 veloc(0, 0);
         if (INS(CruZ::Input)->isKeyPressed(sf::Keyboard::Key::A))
             veloc += {-1, 0};
@@ -65,7 +61,7 @@ void SpaceShip::update(float)
             veloc = {0, 0};
         else
             veloc.Normalize();
-        veloc *= speed;
+        veloc *= SPACESHIP_SPEED;
 
         m_body->SetLinearVelocity(veloc);
     }
@@ -79,18 +75,11 @@ void SpaceShip::update(float)
             SpawnBullet();
         }
     }
-
-    // update camera position
-    {
-        INS(CruZ::Game)->getView()->setCenter({m_body->GetPosition().x, -m_body->GetPosition().y});
-        // INS(Game)->getView()->setCenter({0, 100});
-    }
 }
 
 void SpaceShip::SpawnBullet()
 {
-    void *mem = m_allocator->Allocate(sizeof(Bullet));
-    Bullet *bullet = new (mem) Bullet(*m_allocator);
+    Bullet *bullet = new Bullet;
     bullet->setPosition({m_body->GetPosition().x, m_body->GetPosition().y + BULLET_OFFSTE_Y});
     m_bullets.push_back(bullet);
     getEntityWorld()->addEntity(*bullet);
@@ -100,9 +89,9 @@ SpaceShip::~SpaceShip()
 {
     for (size_t i = 0; i < m_bullets.size(); i++)
     {
-        m_allocator->Free(m_bullets[i]);
+        delete m_bullets[i];
     }
 
-    delete m_allocator;
+    delete m_sprite;
 }
 } // namespace CruZ
