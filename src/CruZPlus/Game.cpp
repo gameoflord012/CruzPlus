@@ -5,8 +5,8 @@
 #include <filesystem>
 
 #include <SFML/Graphics.hpp>
-#include <SFML/Graphics/View.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics/View.hpp>
 
 #include <box2d/box2d.h>
 
@@ -20,6 +20,7 @@
 #include "CruZPlus/GameEntity/EntityWorld.h"
 #include "CruZPlus/Helper/TimeHelper.h"
 #include "CruZPlus/Input.h"
+#include "CruZPlus/Physic/DebugDraw.h"
 #include "CruZPlus/Settings.h"
 #include "CruZPlus/TextureManager.h"
 
@@ -32,6 +33,9 @@ Game::Game()
     m_view->setCenter({0, 0});
 
     m_b2World = new b2World(b2Vec2(0, -10));
+    m_debugDraw = new DebugDraw(*m_window);
+    m_debugDraw->SetFlags(b2Draw::e_shapeBit | b2Draw::e_aabbBit);
+    m_b2World->SetDebugDraw(m_debugDraw);
 
     m_entityWorld = new EntityWorld;
     m_textureManager = new TextureManager;
@@ -109,6 +113,7 @@ void Game::run()
         {
             m_window->setView(*m_view);
             m_entityWorld->renderAll(*m_window);
+            m_b2World->DebugDraw();
 #if CRUZ_EDITOR
             ImGui ::SFML::Render(window);
 #endif
@@ -127,7 +132,7 @@ Game::~Game()
     delete m_view;
     delete m_input;
     delete m_window;
-    delete m_view;
     delete m_bodyFactory;
+    delete m_debugDraw;
 }
 } // namespace CruZ

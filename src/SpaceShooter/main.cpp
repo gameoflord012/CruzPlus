@@ -8,8 +8,8 @@
 
 #include <CruZPlus/GameEntity.h>
 
-#include "SpaceShooter/Settings.h"
 #include "SpaceShip.h"
+#include "SpaceShooter/Settings.h"
 
 int main()
 {
