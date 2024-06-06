@@ -23,7 +23,7 @@ SpaceShip::SpaceShip(const char *texture)
 {
     // create body
     b2BodyDef bodyDef;
-    bodyDef.type = b2_dynamicBody;
+    bodyDef.type = b2_kinematicBody;
     m_body = INS(CruZ::BodyFactory)->CreateBody(bodyDef);
 
     // create fixture
