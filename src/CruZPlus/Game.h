@@ -18,6 +18,7 @@ class Input;
 class TextureManager;
 class BodyFactory;
 class DebugDraw;
+class ContactListenerHandler;
 
 class Game
 {
@@ -40,6 +41,7 @@ class Game
     b2World *m_b2World{};
     Input *m_input{};
     DebugDraw *m_debugDraw{};
+    ContactListenerHandler *m_contactListener;
 };
 } // namespace CruZ
 

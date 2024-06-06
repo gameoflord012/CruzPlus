@@ -23,7 +23,7 @@
 #include "CruZPlus/Physic/DebugDraw.h"
 #include "CruZPlus/Settings.h"
 #include "CruZPlus/TextureManager.h"
-
+#include "CruzPlus/Physic/ContactListenerHandler.h"
 namespace CruZ
 {
 Game::Game()
@@ -33,6 +33,8 @@ Game::Game()
     m_view->setCenter({0, 0});
 
     m_b2World = new b2World(b2Vec2(0, -10));
+    m_contactListener = new ContactListenerHandler;
+    m_b2World->SetContactListener(m_contactListener);
     m_debugDraw = new DebugDraw(*m_window);
     m_debugDraw->SetFlags(b2Draw::e_shapeBit | b2Draw::e_aabbBit);
     m_b2World->SetDebugDraw(m_debugDraw);
@@ -134,5 +136,6 @@ Game::~Game()
     delete m_window;
     delete m_bodyFactory;
     delete m_debugDraw;
+    delete m_contactListener;
 }
 } // namespace CruZ
