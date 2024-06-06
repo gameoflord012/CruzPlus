@@ -19,7 +19,7 @@
 
 namespace SpaceShooter
 {
-SpaceShip::SpaceShip()
+SpaceShip::SpaceShip(const char *texture)
 {
     // create body
     b2BodyDef bodyDef;
@@ -32,7 +32,7 @@ SpaceShip::SpaceShip()
     m_body->CreateFixture(&boxShape, 0);
 
     // create sprite
-    m_sprite = new sf::Sprite(*INS(CruZ::TextureManager)->get("res/main_ship.png"));
+    m_sprite = new sf::Sprite(*INS(CruZ::TextureManager)->get(texture));
     m_sprite->setOrigin(m_sprite->getGlobalBounds().getSize() / 2.0f);
 }
 
@@ -41,40 +41,6 @@ void SpaceShip::render(sf::RenderWindow &window)
     sf::Vector2f bodyPosition = {};
     m_sprite->setPosition({m_body->GetPosition().x, -m_body->GetPosition().y});
     window.draw(*m_sprite);
-}
-
-void SpaceShip::update(float)
-{
-    // update velocity inputs
-    {
-        b2Vec2 veloc(0, 0);
-        if (INS(CruZ::Input)->isKeyPressed(sf::Keyboard::Key::A))
-            veloc += {-1, 0};
-        if (INS(CruZ::Input)->isKeyPressed(sf::Keyboard::Key::D))
-            veloc += {1, 0};
-        if (INS(CruZ::Input)->isKeyPressed(sf::Keyboard::Key::W))
-            veloc += {0, 1};
-        if (INS(CruZ::Input)->isKeyPressed(sf::Keyboard::Key::S))
-            veloc += {0, -1};
-
-        if (veloc.Length() < 1)
-            veloc = {0, 0};
-        else
-            veloc.Normalize();
-        veloc *= SPACESHIP_SPEED;
-
-        m_body->SetLinearVelocity(veloc);
-    }
-
-    // PRINTF("Space press: %s\n", sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) ? "TRUE" : "FALSE");
-
-    // update spawn bullet
-    {
-        if (INS(CruZ::Input)->isKeyJustPressed(sf::Keyboard::Key::Space))
-        {
-            SpawnBullet();
-        }
-    }
 }
 
 void SpaceShip::SpawnBullet()

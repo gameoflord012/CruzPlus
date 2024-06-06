@@ -8,7 +8,7 @@
 
 #include <CruZPlus/GameEntity.h>
 
-#include "SpaceShip.h"
+#include "GameObjects/PlayerShip.h"
 #include "SpaceShooter/Settings.h"
 
 int main()
@@ -17,8 +17,10 @@ int main()
     {
         CruZ::Game game;
         game.getView()->zoom(SpaceShooter::Settings::CAMERA_ZOOM);
-        SpaceShooter::SpaceShip spaceShip;
-        INS(CruZ::EntityWorld)->addEntity(spaceShip);
+
+        SpaceShooter::PlayerShip playerShip;
+        INS(CruZ::EntityWorld)->addEntity(playerShip);
+
         game.run();
     }
     catch (const std::exception &e)
