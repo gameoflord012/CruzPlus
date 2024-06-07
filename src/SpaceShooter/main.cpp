@@ -8,20 +8,18 @@
 
 #include <CruZPlus/GameEntity.h>
 
-#include "GameObjects/PlayerShip.h"
-#include "SpaceShooter/Settings.h"
+// #include "GameObjects/PlayerShip.h"
+// #include "SpaceShooter/Settings.h"
 
 int main()
 {
     try
     {
-        CruZ::Game game;
-        game.getView()->zoom(SpaceShooter::Settings::CAMERA_ZOOM);
-
-        SpaceShooter::PlayerShip playerShip;
-        INS(CruZ::EntityWorld)->addEntity(playerShip);
-
-        game.run();
+        auto shad = sf::Shader::loadFromFile("fuck", "fuck", "fuck");
+        sf::Shader::bind(&shad.value());
+        sf::Shader::bind(NULL);
+        glm::
+        
     }
     catch (const std::exception &e)
     {

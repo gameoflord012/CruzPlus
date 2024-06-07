@@ -28,7 +28,7 @@ namespace CruZ
 {
 Game::Game()
 {
-    m_window = new sf::RenderWindow(sf::VideoMode(sf::Vector2u(1920, 1080)), "My window");
+    m_window = new sf::RenderWindow(sf::VideoMode({Setting::WINDOW_W, Setting::WINDOW_H}), "My window");
     m_view = new sf::View({0, 0}, m_window->getDefaultView().getSize());
     m_view->setCenter({0, 0});
 

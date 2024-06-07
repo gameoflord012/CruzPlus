@@ -12,7 +12,8 @@ namespace SpaceShooter
 {
 Bullet::Bullet()
 {
-    m_body = INS(CruZ::BodyFactory)->CreateCircle(5, b2_kinematicBody);
+    m_body = INS(CruZ::BodyFactory)->CreateCircle(5, b2_dynamicBody);
+    m_body->GetFixtureList()[0].SetSensor(true);
     m_body->SetLinearVelocity({0, BULLET_SPEED});
 
     sf::Texture *texture = INS(CruZ::TextureManager)->get("res/main_ship_bullet.png");

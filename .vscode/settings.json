@@ -86,7 +86,8 @@
         "xtree": "cpp",
         "xutility": "cpp",
         "typeindex": "cpp",
-        "*.idl": "cpp"
+        "*.idl": "cpp",
+        "cassert": "cpp"
     },
     "workbench.editor.enablePreview": false,
     "workbench.editor.revealIfOpen": true,
