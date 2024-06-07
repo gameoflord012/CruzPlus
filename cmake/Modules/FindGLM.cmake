@@ -1,0 +1,1 @@
+set(GLM_INCLUDE_DIRS "${CRUZ_THIRDPARTY_DIR}/glm")  
