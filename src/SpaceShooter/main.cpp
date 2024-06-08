@@ -17,7 +17,6 @@ int main()
     {
         glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
 
-        // Target position (where the camera is looking at)
         glm::vec3 targetPos = glm::vec3(0.0f, 0.0f, 0.0f);
 
         // Up vector (defines the "up" direction of the camera)
@@ -25,6 +24,7 @@ int main()
 
         // Calculate the lookAt matrix
         glm::mat4 viewMatrix = glm::lookAt(cameraPos, targetPos, up);
+
     }
     catch (const std::exception &e)
     {
