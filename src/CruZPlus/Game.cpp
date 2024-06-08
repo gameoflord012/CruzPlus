@@ -24,6 +24,7 @@
 #include "CruZPlus/Settings.h"
 #include "CruZPlus/TextureManager.h"
 #include "CruzPlus/Physic/ContactListenerHandler.h"
+#include "sokol_gfx.h"
 namespace CruZ
 {
 Game::Game()
@@ -49,6 +50,8 @@ Game::Game()
     Instances::set(m_textureManager);
     Instances::set(m_input);
     Instances::set(m_entityWorld);
+
+    sg_setup({});
 }
 
 b2World *Game::getB2World()
