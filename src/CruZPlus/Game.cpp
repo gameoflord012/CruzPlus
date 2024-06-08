@@ -24,7 +24,10 @@
 #include "CruZPlus/Settings.h"
 #include "CruZPlus/TextureManager.h"
 #include "CruzPlus/Physic/ContactListenerHandler.h"
+
 #include "sokol_gfx.h"
+#include "sokol_log.h"
+
 namespace CruZ
 {
 Game::Game()
@@ -51,7 +54,9 @@ Game::Game()
     Instances::set(m_input);
     Instances::set(m_entityWorld);
 
-    sg_setup({});
+    sg_setup({
+        .logger = { .func = slog_func }
+    });
 }
 
 b2World *Game::getB2World()
